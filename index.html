@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trip Planner</title>
+<link rel="stylesheet" href="style.css">
+<link rel="manifest" href="trip-planner.webmanifest">
+</head>
+<body>
+  <header>
+    <h1>✈ Trip Planner</h1>
+    <button id="themeToggle" aria-label="Toggle theme">◐</button>
+  </header>
+
+  <main>
+    <section id="formSection">
+      <h2>Plan your trip</h2>
+      <p>Tell us where you're headed and we'll build the itinerary.</p>
+
+      <form id="tripForm" novalidate>
+        <div class="grid">
+          <div class="field">
+            <label for="originCity">From</label>
+            <select id="originCity" required></select>
+            <span class="err" id="errOrigin"></span>
+          </div>
+          <div class="field">
+            <label for="destCity">To</label>
+            <select id="destCity"></select>
+            <span class="err" id="errDest"></span>
+          </div>
+          <div class="field">
+            <label for="customDestCity">Or a place of your choice</label>
+            <input type="text" id="customDestCity" placeholder="e.g. Coorg, Hampi">
+          </div>
+          <div class="field">
+            <label for="tripFrom">From date</label>
+            <input type="date" id="tripFrom" required>
+            <span class="err" id="errDateFrom"></span>
+          </div>
+          <div class="field">
+            <label for="tripTo">To date</label>
+            <input type="date" id="tripTo" required>
+            <span class="err" id="errDateTo"></span>
+          </div>
+          <div class="field">
+            <label for="members">Travelers</label>
+            <input type="number" id="members" min="1" max="50" value="2" required>
+            <span class="err" id="errMembers"></span>
+          </div>
+          <div class="field">
+            <label for="purpose">Purpose</label>
+            <select id="purpose">
+              <option value="leisure">Leisure</option>
+              <option value="family">Family</option>
+              <option value="business">Business</option>
+              <option value="pilgrimage">Pilgrimage</option>
+              <option value="romantic">Romantic</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="tripType">Trip type</label>
+            <select id="tripType">
+              <option value="local">Local / Day trip</option>
+              <option value="outstation">Outstation</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="customStay">Custom Stay</label>
+            <input type="text" id="customStay" placeholder="Enter custom stay option">
+            <span class="err" id="errCustomStay"></span>
+          </div>
+        </div>
+
+        <h3>Preferences</h3>
+        <div class="chips" id="amenities">
+          <button type="button" class="chip" data-amenity="ac" aria-pressed="false">AC</button>
+          <button type="button" class="chip" data-amenity="wifi" aria-pressed="false">WiFi</button>
+          <button type="button" class="chip" data-amenity="parking" aria-pressed="false">Parking</button>
+          <button type="button" class="chip" data-amenity="budget" aria-pressed="false">Budget</button>
+          <button type="button" class="chip" data-amenity="luxury" aria-pressed="false">Luxury</button>
+          <button type="button" class="chip" data-amenity="other" aria-pressed="false">Other</button>
+        </div>
+        <div class="field hidden" id="customAmenityField" style="margin-top:12px;max-width:360px">
+          <label for="customAmenity">Your preference</label>
+          <input type="text" id="customAmenity" placeholder="e.g. Pet-friendly, Gym">
+        </div>
+
+        <h3>Transport</h3>
+        <div class="chips" id="transport">
+          <button type="button" class="pill" data-transport="train" aria-pressed="true">Train</button>
+          <button type="button" class="pill" data-transport="bus" aria-pressed="false">Bus</button>
+          <button type="button" class="pill" data-transport="flight" aria-pressed="false">Flight</button>
+          <button type="button" class="pill" data-transport="cab" aria-pressed="false">Cab</button>
+        </div>
+
+        <button class="btn btn-primary btn-block" type="submit">Find places &amp; resorts</button>
+      </form>
+    </section>
+  </main>
+
+  <script src="dataService.js"></script>
+  <script src="app.js"></script>
+</body>
+<script src="app.js"></script>
+
+<!-- Service Worker Registration -->
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js').then(() => {
+      console.log('Service Worker registered');
+    });
+  }
+</script>
+</body>
+</html>
