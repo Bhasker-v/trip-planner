@@ -1,5 +1,6 @@
 // app.js — main app logic
 'use strict';
+(() => {
 window.$ = window.$ || ((s, r = document) => r.querySelector(s));
 window.$$ = window.$$ || ((s, r = document) => Array.from(r.querySelectorAll(s)));
 // const $  = (s, r = document) => r.querySelector(s);
@@ -546,3 +547,4 @@ function resetChips() {
 $('#tripForm').addEventListener('submit', e => { e.preventDefault(); showOptions(); });
 document.querySelector('main').insertAdjacentHTML('afterbegin', '<div class="toasts"></div>');
 resetChips();
+})();
