@@ -1,7 +1,9 @@
 // app.js — main app logic
 'use strict';
-const $  = (s, r = document) => r.querySelector(s);
-const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+window.$ = window.$ || ((s, r = document) => r.querySelector(s));
+window.$$ = window.$$ || ((s, r = document) => Array.from(r.querySelectorAll(s)));
+// const $  = (s, r = document) => r.querySelector(s);
+// const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c =>
   ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
 const norm = s => String(s || '').toLowerCase().trim().replace(/\s+/g, '-');
