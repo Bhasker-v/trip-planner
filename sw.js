@@ -1,8 +1,11 @@
 // sw.js — minimal offline cache
 const CACHE = 'trip-planner-v1';
 const ASSETS = [
+  './index.html',
   './trip-planner.html',
+  './style.css',
   './dataService.js',
+  './app.js',
   './trip-planner.webmanifest'
 ];
 

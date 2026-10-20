@@ -2,7 +2,7 @@
   "name": "Trip Planner",
   "short_name": "Planner",
   "description": "Plan trips within Indian cities and outstation travel",
-  "start_url": "./trip-planner.html",
+  "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#f0f7ff",
   "theme_color": "#ff6b6b",
