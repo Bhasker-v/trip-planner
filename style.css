@@ -168,3 +168,19 @@ h3 { font-size: 1.125rem; margin: 20px 0 12px; }
 
 ::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: var(--r-full); }
+
+/* ---------- Itinerary timeline ---------- */
+.timeline { display: flex; flex-direction: column; gap: 0; }
+.stop { display: grid; grid-template-columns: 78px 26px 1fr; gap: 12px; align-items: start; }
+.stop .time { font-size: .75rem; font-weight: 650; color: var(--muted); text-align: right; padding-top: 11px; text-transform: uppercase; letter-spacing: .03em; }
+.stop .rail { display: flex; flex-direction: column; align-items: center; height: 100%; }
+.stop .dot {
+  width: 11px; height: 11px; border-radius: 50%; background: var(--accent);
+  margin-top: 14px; box-shadow: 0 0 0 3px var(--accent-soft); flex-shrink: 0;
+}
+.stop .line { width: 2px; flex: 1; background: var(--border); margin: 4px 0; min-height: 18px; }
+.stop:last-child .line { display: none; }
+.stop .body { padding: 9px 0 15px; min-width: 0; }
+.stop .name { font-size: .9375rem; font-weight: 600; }
+.stop .sub { font-size: .8125rem; color: var(--muted); margin-top: 2px; }
+@media (max-width: 560px) { .stop { grid-template-columns: 26px 1fr; } .stop .time { grid-column: 2; text-align: left; padding-top: 9px; } }

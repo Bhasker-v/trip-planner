@@ -532,7 +532,30 @@ function reset() {
     </section>`;
   $('#customDestCity').value = '';
   // Reattach event listeners
+  $('#tripForm').onmousedown = null; // Clear any potential duplicate listeners
   $('#tripForm').addEventListener('submit', e => { e.preventDefault(); showOptions(); });
+  $('#amenities').onmousedown = null; // Clear any potential duplicate listeners
+  $('#amenities').addEventListener('click', e => {
+    const c = e.target.closest('.chip'); if (!c) return;
+    const amenity = c.dataset.amenity;
+    const willBeOn = c.getAttribute('aria-pressed') !== 'true';
+    if (willBeOn && (amenity === 'budget' || amenity === 'luxury')) {
+      const other = amenity === 'budget' ? 'luxury' : 'budget';
+      const otherEl = document.querySelector(`.chip[data-amenity="${other}"]`);
+      if (otherEl && otherEl.getAttribute('aria-pressed') === 'true') {
+        otherEl.setAttribute('aria-pressed', 'false');
+        amenities.delete(other);
+      }
+    }
+    c.setAttribute('aria-pressed', String(willBeOn));
+    willBeOn ? amenities.add(amenity) : amenities.delete(amenity);
+    const customField = document.getElementById('customAmenityField');
+    if (customField) {
+      const show = amenities.has('other');
+      customField.classList.toggle('hidden', !show);
+      if (!show) document.getElementById('customAmenity').value = '';
+    }
+  });
   document.querySelector('main').insertAdjacentHTML('afterbegin', '<div class="toasts"></div>');
   paint(); // Reload cities
   resetChips(); // Reset amenities
